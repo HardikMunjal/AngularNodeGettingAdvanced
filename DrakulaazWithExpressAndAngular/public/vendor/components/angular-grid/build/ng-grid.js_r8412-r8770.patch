@@ -1,0 +1,40 @@
+Index: ng-grid.js
+===================================================================
+--- ng-grid.js	(revision 8770)
++++ ng-grid.js	(revision 8412)
+@@ -1066,7 +1066,7 @@
+ 
+ var ngFooter = function ($scope, grid) {
+     $scope.maxRows = function () {
+-        var ret = Math.max($scope.pagingOptions.totalServerItems, grid.data.length);
++        var ret = Math.max($scope.totalServerItems, grid.data.length);
+         return ret;
+     };
+     $scope.multiSelect = (grid.config.enableRowSelection && grid.config.multiSelect);
+@@ -1077,7 +1077,7 @@
+ 
+     $scope.pageForward = function() {
+         var page = $scope.pagingOptions.currentPage;
+-        if ($scope.pagingOptions.totalServerItems > 0) {
++        if ($scope.totalServerItems > 0) {
+             $scope.pagingOptions.currentPage = Math.min(page + 1, $scope.maxPages());
+         } else {
+             $scope.pagingOptions.currentPage++;
+@@ -1101,7 +1101,7 @@
+     $scope.cantPageForward = function() {
+         var curPage = $scope.pagingOptions.currentPage;
+         var maxPages = $scope.maxPages();
+-        if ($scope.pagingOptions.totalServerItems > 0) {
++        if ($scope.totalServerItems > 0) {
+             return curPage >= maxPages;
+         } else {
+             return grid.data.length < 1;
+@@ -1109,7 +1109,7 @@
+ 
+     };
+     $scope.cantPageToLast = function() {
+-        if ($scope.pagingOptions.totalServerItems > 0) {
++        if ($scope.totalServerItems > 0) {
+             return $scope.cantPageForward();
+         } else {
+             return true;

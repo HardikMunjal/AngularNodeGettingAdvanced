@@ -1,0 +1,58 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'shrinkwrap' ]
+2 info using npm@2.5.1
+3 info using node@v0.12.0
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 warn unmet dependency C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\multer\node_modules\busboy\node_modules\dicer requires readable-stream@'1.1.x' but will load
+5 warn unmet dependency C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\multer\node_modules\busboy\node_modules\readable-stream,
+5 warn unmet dependency which is version 1.1.13-1
+6 verbose stack Error: Problems were encountered
+6 verbose stack Please correct and try again.
+6 verbose stack invalid: express@3.1.2 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\express
+6 verbose stack extraneous: formidable@1.0.17 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\formidable
+6 verbose stack extraneous: fs@0.0.2 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\fs
+6 verbose stack extraneous: moment@2.9.0 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\moment
+6 verbose stack extraneous: mime@1.3.4 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\mime
+6 verbose stack extraneous: path@0.11.14 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\path
+6 verbose stack extraneous: connect-form@0.2.1 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\connect-form
+6 verbose stack extraneous: jade@0.28.1 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\jade
+6 verbose stack extraneous: util@0.10.3 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\util
+6 verbose stack extraneous: mysql@2.6.1 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\mysql
+6 verbose stack extraneous: multiparty@4.1.1 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\multiparty
+6 verbose stack extraneous: multer@0.1.8 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\multer
+6 verbose stack extraneous: cf-node-debug@0.1.2 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\cf-node-debug
+6 verbose stack     at shrinkwrap_ (C:\Program Files\nodejs\node_modules\npm\lib\shrinkwrap.js:31:15)
+6 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\shrinkwrap.js:25:5
+6 verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\ls.js:46:30
+6 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:138:5
+6 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
+6 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+6 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
+6 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+6 verbose stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\read-installed\read-installed.js:251:14
+6 verbose stack     at cb (C:\Program Files\nodejs\node_modules\npm\node_modules\slide\lib\async-map.js:47:24)
+7 verbose cwd C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular
+8 error Windows_NT 6.1.7601
+9 error argv "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "shrinkwrap"
+10 error node v0.12.0
+11 error npm  v2.5.1
+12 error Problems were encountered
+12 error Please correct and try again.
+12 error invalid: express@3.1.2 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\express
+12 error extraneous: formidable@1.0.17 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\formidable
+12 error extraneous: fs@0.0.2 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\fs
+12 error extraneous: moment@2.9.0 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\moment
+12 error extraneous: mime@1.3.4 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\mime
+12 error extraneous: path@0.11.14 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\path
+12 error extraneous: connect-form@0.2.1 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\connect-form
+12 error extraneous: jade@0.28.1 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\jade
+12 error extraneous: util@0.10.3 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\util
+12 error extraneous: mysql@2.6.1 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\mysql
+12 error extraneous: multiparty@4.1.1 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\multiparty
+12 error extraneous: multer@0.1.8 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\multer
+12 error extraneous: cf-node-debug@0.1.2 C:\Users\Hardi\myEclipseProject\DrakulaazWithExpressAndAngular\node_modules\cf-node-debug
+13 error If you need help, you may report this error at:
+13 error     <http://github.com/npm/npm/issues>
+14 verbose exit [ 1, true ]

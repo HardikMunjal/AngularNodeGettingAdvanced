@@ -1,0 +1,63 @@
+<!-- Embedded JavaScript -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link href="/css/bootstrap.css" rel="stylesheet" />
+        <link href="/css/MyStyle.css" rel="stylesheet" />
+        <link href="/css/bootstrap.min.css" rel="stylesheet" />
+        <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/js/bootstrap.js" type="text/javascript"></script>
+        <script src="/node_modules/ejs/ejs.min.js" type="text/javascript"></script>
+        <script src="/node_modules/ejs/ejs.js" type="text/javascript"></script>
+        <script src="/js/jquery-1.11.2.js" type="text/javascript"></script>
+        <script src="/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+
+    </head>
+    <body>
+        <form id="user" method="get">
+            <div class="container">
+                <div class="row">
+                    <table id="" class="table-striped table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>
+                                User Name
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                Reviews
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody id="details">
+                            <%
+                                if(data.length){              
+                                 for(var i = 0;i < data.length;i++) {
+                            %>
+                        <tr>
+                            <td><%= data[i].UserId %></td>
+                            <td><%= data[i].Description %></td>
+                            <td><%= data[i].Reviews %></td>
+
+                        </tr>
+                        <%
+                            }
+                            
+                   }else{
+                        %>
+                        <tr>
+                            <td colspan="3">No user</td>
+                        </tr>
+                        <% } %>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </body>
+</html>

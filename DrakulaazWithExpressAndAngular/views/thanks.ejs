@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <style type="text/css">
+            
+            #slides_control > div{
+  height: 200px;
+}
+img{
+  margin:auto;
+  width: 400px;
+}
+#slides_control {
+  position:absolute;
+  width: 400px;
+  left:50%;
+  top:20px;
+ margin-left:-200px;
+}
+        </style>
+     
+   
+ 
+    
+   
+  
+        
+    <link rel="stylesheet" href="style.css">
+    
+   
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+        <link href="/css/style.css" rel="stylesheet" />
+        <link href="/css/mystyle.css" rel="stylesheet" />
+       <link href="/css/bootstrap.min.css" rel="stylesheet" />
+         <script src="/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/js/bootstrap.js" type="text/javascript"></script>
+        <script src="/node_modules/ejs/ejs.min.js" type="text/javascript"></script>
+        <script src="/node_modules/ejs/ejs.js" type="text/javascript"></script>
+       
+        
+        
+       
+    <script>
+ 
+ 
+              $(document).ready(function(){
+            $('body').append('<div id="toTop" class="btn btn-info" style="float: right; margin-bottom: 10px ; margin-right: 10px;"  ><span class="glyphicon glyphicon-chevron-up"></span> Back to Top</div>');
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() != 0) {
+                        $('#toTop').fadeIn();
+                    } else {
+                        $('#toTop').fadeOut();
+                    }
+                });
+            
+                $('#toTop').click(function () {
+                    $("html, body").animate({ scrollTop: 0 }, 600);
+                    return false;
+                });
+            
+               })  ;            
+        </script>
+       
+
+
+</head>
+
+   
+ 
+
+ 
+    <body ng-app="app">
+
+
+         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+       
+       
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
+       
+         <script src="/js/jquery-1.11.2.js" type="text/javascript"></script>
+        <script src="/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+        
+
+ 
+ 
+     <script src="/js/merchant.js" type="text/javascript"></script>
+       
+    <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-route.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular-animate.js"></script>
+ 
+ 
+        <div class="{{ pageClass }}" ng-view></div>
+         <script type="text/javascript">
+
+            
+
+              var app = angular.module('app', ['app1', 'animateApp']);
+
+
+               var animateApp = angular.module('animateApp', ['ui.bootstrap','ngRoute', 'ngAnimate', ]);
+
+
+            var mod1 = angular.module('app1',['ui.bootstrap']).controller('CarouselDemoCtrl', function ($scope) {
+                $scope.myInterval = 3000;
+                $scope.slides = [
+                {
+                    image: 'image1.png'
+                },
+                {
+                    image: 'image3.jpg'
+                },
+                {
+                    image: 'image1.png'
+                },
+                {
+                    image: 'image5.jpg'
+                }
+              ];
+            });
+
+
+             animateApp.config(function ($routeProvider) {
+                 $routeProvider
+                                           .when('/', {
+                                               templateUrl: '/partial/page-aboutTest.ejs'
+
+                                           })
+                                           .when('/about', {
+                                               templateUrl: '/partial/page-aboutTest.ejs',
+                                               controller: 'aboutController'
+                                           })
+                                           .when('/contact/:id', {
+                                               templateUrl: '/partial/page-homeTest.ejs'
+
+                                           });
+
+             });
+
+
+             animateApp.controller('JustCtrl', function ($scope, $http, $routeParams) {
+                 $scope.ptis = [];
+                 // Simple GET request example :
+                 debugger;
+                 $http.get('https://gist.githubusercontent.com/idhamperdameian/239cc5a4dbba4488575d/raw/0a2ea4c6c120c9a8f02c85afcf7a31941ef74d3a/ptis.json').
+                                       success(function (data, status, headers, config) {
+                                           // this callback will be called asynchronously
+                                           // when the response is available
+                                           $scope.ptis = data[$routeParams.id];
+                                           $scope.myInterval = 3000;
+                                           $scope.slides = [
+                       {
+                           image: 'http://lorempixel.com/400/200/'
+                       },
+                       {
+                           image: 'http://lorempixel.com/400/200/food'
+                       },
+                       {
+                           image: 'http://lorempixel.com/400/200/sports'
+                       },
+                       {
+                           image: 'http://lorempixel.com/400/200/people'
+                       }
+                     ];
+
+                                       }).
+                                       error(function (data, status, headers, config) {
+                                           // called asynchronously if an error occurs
+                                           // or server returns response with an error status.
+                                       });
+
+             }).controller('MyController', ['$scope', function ($scope) {
+                 $scope.username = $scope.ptis;
+
+
+
+
+             } ]);
+
+
+
+
+
+
+
+             animateApp.controller('SingleDataFetch', function ($scope, $http, $routeParams) {
+                 $scope.ptis = [];
+                 // Simple GET request example :
+                 debugger;
+                 $http.get('/demo').
+                                       success(function (data, status, headers, config) {
+                                           // this callback will be called asynchronously
+                                           // when the response is available
+                                           $scope.ptis = data[$routeParams.id];
+                                           $scope.previews = [{ stars: 5, body: "this product is fucking asshole", author: "mkmk" }, { stars: 5, body: "this product is good", author: "mkmk"}];
+                                           $scope.myInterval = 3000;
+
+
+                                       }).
+                                       error(function (data, status, headers, config) {
+                                           // called asynchronously if an error occurs
+                                           // or server returns response with an error status.
+                                       });
+
+             });
+             animateApp.controller("ReviewController", function () {
+                 this.preview = {};
+                 this.addPreview = function (previews) {
+                     previews.push(this.preview);
+                     this.preview = {};
+                 };
+             });
+
+
+
+             animateApp.controller('SingleImageFetch', function ($scope, $http, $routeParams) {
+                 $scope.ptis = [];
+                 // Simple GET request example :
+                 debugger;
+                 $http.get('/images').
+                                       success(function (data, status, headers, config) {
+                                           // this callback will be called asynchronously
+                                           // when the response is available
+                                           $scope.ImageData = data[$routeParams.id];
+
+                                           $scope.myInterval = 3000;
+
+
+                                       }).
+                                       error(function (data, status, headers, config) {
+                                           // called asynchronously if an error occurs
+                                           // or server returns response with an error status.
+                                       });
+
+             });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+             animateApp.controller('DataFetchControl', function ($scope, $http) {
+                 $scope.ptis = [];
+                 // Simple GET request example :
+                 $http.get('/demo').
+               success(function (data, status, headers, config) {
+                   // this callback will be called asynchronously
+                   // when the response is available
+                   $scope.ptis = data;
+                   $scope.reviews = [{ stars: 5, body: "this product is asshole", author: "mkmk"}];
+                   $scope.ptis3 = "data";
+
+
+               }).
+               error(function (data, status, headers, config) {
+                   // called asynchronously if an error occurs
+                   // or server returns response with an error status.
+               });
+             });
+
+
+
+
+
+
+             animateApp.controller('ImageFetchControl', function ($scope, $http) {
+                 $scope.ptis = [];
+                 // Simple GET request example :
+                 $http.get('/images').
+               success(function (data, status, headers, config) {
+                   // this callback will be called asynchronously
+                   // when the response is available
+                   $scope.imagesData = data;
+               }).
+               error(function (data, status, headers, config) {
+                   // called asynchronously if an error occurs
+                   // or server returns response with an error status.
+               });
+             });
+
+
+
+
+
+
+             animateApp.controller('MyController2', ['$scope', '$routeParams', function ($scope, $routeParams) {
+                 $scope.username = 'World';
+
+                 $scope.sayHello = function () {
+                     $scope.greeting = 'Hello ' + $scope.username + '!';
+                 };
+             } ]);
+
+
+             animateApp.controller('mainController', function ($scope) {
+                 $scope.pageClass = 'page-homeTest';
+             });
+
+             animateApp.controller('aboutController', function ($scope) {
+                 $scope.pageClass = 'page-aboutTest';
+             });
+
+
+
+
+           
+
+
+             animateApp.controller('RatingCtrl', function ($scope) {
+                 $scope.rating = 3;
+                 $scope.rateFunction = function (rating) {
+                     alert('Rating selected - ' + rating);
+                 };
+             })
+                                     .directive('starRating',
+                                       function () {
+                                           return {
+                                               restrict: 'A',
+                                               template: '<ul class="rating">'
+                                                        + '    <li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)">'
+                                                        + '\u2605'
+                                                        + '</li>'
+                                                        + '</ul>',
+                                               scope: {
+                                                   ratingValue: '=',
+                                                   max: '=',
+                                                   onRatingSelected: '&'
+                                               },
+                                               link: function (scope, elem, attrs) {
+                                                   var updateStars = function () {
+                                                       scope.stars = [];
+                                                       for (var i = 0; i < scope.max; i++) {
+                                                           scope.stars.push({
+                                                               filled: i < scope.ratingValue
+                                                           });
+                                                       }
+                                                   };
+
+                                                   scope.toggle = function (index) {
+                                                       scope.ratingValue = index + 1;
+                                                       scope.onRatingSelected({
+                                                           rating: index + 1
+                                                       });
+                                                   };
+
+                                                   scope.$watch('ratingValue',
+                                                       function (oldVal, newVal) {
+                                                           if (newVal) {
+                                                               updateStars();
+                                                           }
+                                                       }
+                                                   );
+                                               }
+                                           };
+                                       }
+                                   );
+             animateApp.controller('StoreController', function ()
+             { this.products = gem; }
+                                                   );
+
+
+
+
+             var gem = [{
+                 name: 'Brush',
+                 price: 32.95,
+                 images: [{ full: 'images/image1.png', thumb: 'images/image2.jpg' }, { full: 'images/image3.jpg', thumb: 'images/image5.jpg'}],
+                 description: 'This product is very awesome',
+                 specification: 'Is tooth paste me namak hai',
+                 review: '5 star',
+                 canPurchase: true
+             },
+                                                   {
+                                                       name: 'ToothPaste',
+                                                       price: 2.95,
+                                                       images: [{ full: 'images/image2.jpg', thumb: 'images/image2.jpg' }, { full: 'images/image3.jpg', thumb: 'images/image5.jpg'}],
+                                                       description: 'This product is fucking asshole',
+                                                       specification: 'Is tooth paste me namak nahi hai',
+                                                       review: '1 star',
+                                                       canPurchase: false
+                                                   }]
+
+
+
+
+
+
+
+
+             animateApp.controller('PanelController', function () {
+                 this.tab = 4;
+                 this.selectTab = function (setTab) {
+                     this.tab = setTab;
+                 };
+                 this.isSelected = function (checkTab) {
+                     return this.tab === checkTab;
+                 };
+             });
+
+
+            
+
+
+    </script>
+    
+    
+        
+    
+</body>
+ 
+ 
+ 
+</html>

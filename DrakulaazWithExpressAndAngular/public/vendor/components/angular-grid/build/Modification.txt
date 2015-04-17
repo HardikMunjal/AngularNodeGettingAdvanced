@@ -1,0 +1,5 @@
+Changes have been made because the next pager was active even when there are no items or only one page
+
+The original files are in the "backup" directory.
+
+Minified at http://jscompress.com/
