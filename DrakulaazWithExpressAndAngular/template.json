@@ -1,0 +1,47 @@
+[
+ {
+"template" : "abc",
+"data" : 
+    {
+        "activeVisitors" : "148",
+        "posts" : 
+        [
+            {
+                "field" : "hardik",
+                "cellClass" : "red"
+            },
+            {
+            	"field" : "hardiks",
+                "cellClass" : "red"
+            },
+            {
+            	"field" : "hardikss",
+                "cellClass" : "red"
+            }
+        ]
+    }
+}
+,
+{
+	"status" : "success",
+	"data" : 
+	    {
+	        "activeVisitors" : "148",
+	        "posts" : 
+	        [
+	            {
+	            	"field" : "hardik",
+	                "cellClass" : "red"
+	            },
+	            {
+	            	"field" : "hardikss",
+	                "cellClass" : "red"
+	            },
+	            {
+	            	"field" : "hardiksss",
+	                "cellClass" : "red"
+	            }
+	        ]
+	    }
+	}
+]

@@ -68,12 +68,96 @@ app.get('/partials/:filename', routes.partials);
 app.get('/MainView', function (req, res) {
     res.render('MainView', { title: 'Main View' });
     
-    app.get('/robes', function (req, res) {
-        res.render('AngularMagic', { title: 'Main View' });
-         
+      
 
 });
 
+app.get('/robes', function (req, res) {
+    res.render('AngularMagic', { title: 'Main View' });
+});
+
+
+app.get('/basic', function (req, res) {
+    res.render('AngularBasic', { title: 'Main View' });
+});
+
+
+app.get('/dynamic', function (req, res) {
+    res.render('AngularDynamicForms', { title: 'Main View' });
+});
+
+
+
+app.get('/data/100',function(req,res){
+	
+	 fs.readFile('./data.json', function (err, data) {
+	 if(err)
+		 {
+		 console.log(err);
+		 }
+	 else{
+	res.end(data);	 
+	 }
+	 
+	 }
+);
+	
+	
+});
+
+
+
+app.get('/template/100',function(req,res){
+	
+	 fs.readFile('./template.json', function (err, data) {
+	 if(err)
+		 {
+		 console.log(err);
+		 }
+	 else{
+	res.end(data);	 
+	 }
+	 
+	 }
+);
+	
+	
+});
+
+app.get('/paytm', function (req, res) {
+    res.render('PaytmAngularGrid', { title: 'Main View' });
+});
+
+
+app.get('/paytmTest', function (req, res) {
+    res.render('PaytmAngularGridTest1', { title: 'Main View' });
+});
+
+
+app.get('/dynamicExcelExport', function (req, res) {
+    res.render('AngularDynamicMapping', { title: 'Main View' });
+});
+
+
+app.get('/dynamicMappingAndExcelExport', function (req, res) {
+    res.render('AngularDynamicMappingAndCsvExport', { title: 'Main View' });
+});
+
+app.get('/dynamicMapping', function (req, res) {
+    res.render('AngularRealDynamicMapping', { title: 'Main View' });
+});
+
+
+
+app.get('/demo2', function (req, res) {
+    var obj = user1.Details2.userList(function onResult(result) {
+        // res.render('hardik', { title:''})
+        // res.render('NewUser', {title:'', data:result})
+        console.log(result);
+        res.end(JSON.stringify(result));
+        // res.JSON(result);
+    });
+});
 
 
 app.get('/demo', function (req, res) {
@@ -85,6 +169,12 @@ app.get('/demo', function (req, res) {
         // res.JSON(result);
     });
 });
+
+
+
+
+
+
 
 app.get('/images', function (req, res) {
     var obj = user1.Details.imgList(function onResult(result) {

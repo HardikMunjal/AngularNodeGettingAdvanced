@@ -1,0 +1,5 @@
+[{sku: "Moroni", mrp: 500,price:470},
+                    {sku: "Tiancum", mrp: 430,price:400},
+                    {sku: "Jacob", mrp: 270,price:250},
+                    {sku: "Nephi", mrp: 290,price:275},
+                    {sku: "Enos", mrp: 140,price:186}];

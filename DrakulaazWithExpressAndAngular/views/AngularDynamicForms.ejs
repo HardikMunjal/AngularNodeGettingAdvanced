@@ -1,0 +1,60 @@
+<html ng-app="myApp">  
+    <head lang="en">
+        <meta charset="utf-8">
+        <title>Getting Started With ngGrid Example</title>  
+          <link rel="stylesheet" type="text/css" href="http://angular-ui.github.com/ng-grid/css/ng-grid.css" />
+        <link rel="stylesheet" type="text/css" href="style.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.min.js"></script>
+        <script type="text/javascript" src="http://angular-ui.github.com/ng-grid/lib/ng-grid.debug.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+        <script type="text/javascript">
+          var app = angular.module('myApp', ['ngGrid']);
+app.controller('MyCtrl', function($scope) {
+    $scope.myData = [{sku: "Moroni", mrp: 500,price:470},
+                    {sku: "Tiancum", mrp: 430,price:400},
+                    {sku: "Jacob", mrp: 270,price:250},
+                    {sku: "Nephi", mrp: 290,price:275},
+                    {sku: "Enos", mrp: 140,price:186}];
+    $scope.gridOptions = { 
+        data: 'myData',
+        enableGridMenu: true,
+        enableCellEditOnFocus: true,
+        columnDefs: [{field: 'sku', displayName: 'SKU'},
+                     {field:'mrp', displayName:'MRP', cellTemplate: '<div ng-class="{red: row.getProperty(col.field) > 340}"><div class="ngCellText">{{row.getProperty(col.field)}}</div></div>'},
+                     {field:'price', displayName:'Price', cellTemplate: '<div ng-class="{red: row.getProperty(col.field) > 300}"><div class="ngCellText">{{row.getProperty(col.field)}}</div></div>'}
+                    
+                    ]
+                    ,enableCellSelection: true
+                    
+                    , rowTemplate: '<div style="height: 100%" ng-class="{green: row.getProperty(\'mrp\') < row.getProperty(\'price\')}"><div ng-style="{ \'cursor\': row.cursor }" ng-repeat="col in renderedColumns" ng-class="col.colIndex()" class="ngCell ">' +
+                                       '<div class="ngVerticalBar" ng-style="{height: rowHeight}" ng-class="{ ngVerticalBarVisible: !$last }"> </div>' +
+                                       '<div ng-cell></div>' +
+                                 '</div></div>'
+        };
+        
+});
+        </script>
+        <style>.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    width: 400px; 
+    height: 300px;
+}
+
+.red {
+    background-color: #f00;
+    color: white;
+}
+        
+        .green {
+    background-color: green;
+    color: white;
+}
+        </style>
+    </head>
+    <body ng-controller="MyCtrl">
+        <div class="gridStyle" ng-grid="gridOptions"></div>
+
+        <aside><h1>Add Validations</h1></aside>
+    </body>
+</html>

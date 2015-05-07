@@ -1,0 +1,97 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-touch.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+    <script src="http://ui-grid.info/release/ui-grid-unstable.js"></script>
+    <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid-unstable.css" type="text/css">
+    <link rel="stylesheet" href="main.css" type="text/css">
+  </head>
+  <body>
+
+<div ng-controller="MainCtrl">
+  <br>
+  <br>
+  <div id="grid1" ui-grid="gridOptions" ui-grid-resize-columns class="grid"></div>
+</div>
+      <style type="text/css">
+          .grid {
+  width: 500px;
+  height: 200px;
+}
+.red { color: red;  background-color: yellow !important; }
+.blue { color: blue;  }
+
+      </style>
+
+    <script>
+
+        var app = angular.module('app', ['ui.grid']);
+        app.controller('MainCtrl', ['$scope', '$http', function ($scope, $http, $filter) {
+            $scope.cv = [
+                          { field: 'name', cellClass: 'red' },
+                          { field: 'company',
+                              cellClass: function (grid, row, col, rowRenderIndex, colRenderIndex) {
+                                  if (grid.getCellValue(row, col) === 'Velity') {
+                                      return 'blue';
+                                  }
+                              }
+                          }
+                        ];
+
+            $scope.gridOptions = {
+                enableSorting: true
+
+            };
+
+
+            $http.get('/template/100')
+                        .success(function (response1) {
+
+                            $scope.posts = response1[0].data.posts;
+
+
+
+
+                            $scope.gridOptions.columnDefs = $scope.posts;
+
+                            
+
+                            $scope.gridOptions.columnDefs[1].cellClass = function (grid, row, col, rowRenderIndex, colRenderIndex) {
+                                if (grid.getCellValue(row, col) === 'Velity') {
+                                    return 'blue';
+                                }
+                            }
+
+
+                        });
+
+            $http.get('/data/100')
+                        .success(function (response2) {
+
+                            window.alert(response2[0].data.posts);
+                           
+                            $scope.posts = [response2[0].data.posts[0]];
+
+                            // If $scope.posts = [response2[0].data.posts[0]]     (Always pass in array in case of grid.data and grid.columndefs)  -->
+
+                            $scope.gridOptions.data = $scope.posts;
+
+
+
+                        });
+        } ]);
+
+
+
+
+
+
+
+    </script>
+  </body>
+</html>

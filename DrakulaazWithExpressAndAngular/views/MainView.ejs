@@ -6,6 +6,8 @@
  
     
     <style type="text/css">
+        
+        
             
             #slides_control > div{
   height: 200px;
@@ -21,6 +23,8 @@ img{
   top:20px;
  margin-left:-200px;
 }
+        
+        
         </style>
   
          <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>-->
@@ -117,18 +121,18 @@ img{
 
              animateApp.config(function ($routeProvider) {
                  $routeProvider
-                                           .when('/', {
-                                               templateUrl: '/partial/page-aboutTest.ejs'
+                                                     .when('/', {
+                                                         templateUrl: '/partial/page-aboutTest2.ejs'
 
-                                           })
-                                           .when('/about', {
-                                               templateUrl: '/partial/page-aboutTest.ejs',
-                                               controller: 'aboutController'
-                                           })
-                                           .when('/contact/:id', {
-                                               templateUrl: '/partial/page-homeTest.ejs'
+                                                     })
+                                                     .when('/about', {
+                                                         templateUrl: '/partial/page-aboutTest.ejs',
+                                                         controller: 'aboutController'
+                                                     })
+                                                     .when('/contact/:id', {
+                                                         templateUrl: '/partial/page-home3Test.ejs'
 
-                                           });
+                                                     });
 
              });
 
@@ -138,31 +142,31 @@ img{
                  // Simple GET request example :
                  debugger;
                  $http.get('https://gist.githubusercontent.com/idhamperdameian/239cc5a4dbba4488575d/raw/0a2ea4c6c120c9a8f02c85afcf7a31941ef74d3a/ptis.json').
-                                       success(function (data, status, headers, config) {
-                                           // this callback will be called asynchronously
-                                           // when the response is available
-                                           $scope.ptis = data[$routeParams.id];
-                                           $scope.myInterval = 3000;
-                                           $scope.slides = [
-                       {
-                           image: 'http://lorempixel.com/400/200/'
-                       },
-                       {
-                           image: 'http://lorempixel.com/400/200/food'
-                       },
-                       {
-                           image: 'http://lorempixel.com/400/200/sports'
-                       },
-                       {
-                           image: 'http://lorempixel.com/400/200/people'
-                       }
-                     ];
+                                                 success(function (data, status, headers, config) {
+                                                     // this callback will be called asynchronously
+                                                     // when the response is available
+                                                     $scope.ptis = data[$routeParams.id];
+                                                     $scope.myInterval = 3000;
+                                                     $scope.slides = [
+                                 {
+                                     image: 'http://lorempixel.com/400/200/'
+                                 },
+                                 {
+                                     image: 'http://lorempixel.com/400/200/food'
+                                 },
+                                 {
+                                     image: 'http://lorempixel.com/400/200/sports'
+                                 },
+                                 {
+                                     image: 'http://lorempixel.com/400/200/people'
+                                 }
+                               ];
 
-                                       }).
-                                       error(function (data, status, headers, config) {
-                                           // called asynchronously if an error occurs
-                                           // or server returns response with an error status.
-                                       });
+                                                 }).
+                                                 error(function (data, status, headers, config) {
+                                                     // called asynchronously if an error occurs
+                                                     // or server returns response with an error status.
+                                                 });
 
              }).controller('MyController', ['$scope', function ($scope) {
                  $scope.username = $scope.ptis;
@@ -182,22 +186,61 @@ img{
                  $scope.ptis = [];
                  // Simple GET request example :
                  debugger;
-                 $http.get('/demo').
-                                       success(function (data, status, headers, config) {
-                                           // this callback will be called asynchronously
-                                           // when the response is available
-                                           $scope.ptis = data[$routeParams.id];
-                                           $scope.previews = [{ stars: 5, body: "this product is fucking asshole", author: "mkmk" }, { stars: 5, body: "this product is good", author: "mkmk"}];
-                                           $scope.myInterval = 3000;
+                 $http.get('/demo2').
+                                                 success(function (data, status, headers, config) {
+                                                     // this callback will be called asynchronously
+                                                     // when the response is available
+                                                     var d = [];
+
+                                                     $scope.ptis = [data[$routeParams.id]];
+                                                     $scope.previews = [{ stars: 5, body: "this product is fucking asshole", author: "mkmk" }, { stars: 5, body: "this product is good", author: "mkmk"}];
+                                                     $scope.myInterval = 3000;
 
 
-                                       }).
-                                       error(function (data, status, headers, config) {
-                                           // called asynchronously if an error occurs
-                                           // or server returns response with an error status.
-                                       });
+                                                 }).
+                                                 error(function (data, status, headers, config) {
+                                                     // called asynchronously if an error occurs
+                                                     // or server returns response with an error status.
+                                                 });
 
              });
+
+
+
+             animateApp.controller('DataPostControl', function ($scope, $http) {
+                
+
+                     var dataObj = {
+
+
+                         reviewStars: $scope.reviewStars,
+                         reviewBody: $scope.reviewBody,
+                         userEmail: $scope.userEmail
+                     };
+
+
+                      $scope.submit = function () {
+                     var res = $http.post('/savecompany_json', dataObj);
+
+                     res.success(function (data, status, headers, config) {
+                         $scope.message = data;
+                     });
+                     res.error(function (data, status, headers, config) {
+                         alert("failure message: " + JSON.stringify({ data: data }));
+                     });
+                     // Making the fields empty
+                     //
+                     $scope.reviewStars = '';
+                     $scope.reviewBody = '';
+                     $scope.userEmail = '';
+
+                 };
+             });
+
+
+
+
+
              animateApp.controller("ReviewController", function () {
                  this.preview = {};
                  this.addPreview = function (previews) {
@@ -213,19 +256,19 @@ img{
                  // Simple GET request example :
                  debugger;
                  $http.get('/images').
-                                       success(function (data, status, headers, config) {
-                                           // this callback will be called asynchronously
-                                           // when the response is available
-                                           $scope.ImageData = data[$routeParams.id];
+                                                 success(function (data, status, headers, config) {
+                                                     // this callback will be called asynchronously
+                                                     // when the response is available
+                                                     $scope.ImageData = data[$routeParams.id];
 
-                                           $scope.myInterval = 3000;
+                                                     $scope.myInterval = 3000;
 
 
-                                       }).
-                                       error(function (data, status, headers, config) {
-                                           // called asynchronously if an error occurs
-                                           // or server returns response with an error status.
-                                       });
+                                                 }).
+                                                 error(function (data, status, headers, config) {
+                                                     // called asynchronously if an error occurs
+                                                     // or server returns response with an error status.
+                                                 });
 
              });
 
@@ -259,20 +302,20 @@ img{
              animateApp.controller('DataFetchControl', function ($scope, $http) {
                  $scope.ptis = [];
                  // Simple GET request example :
-                 $http.get('/demo').
-               success(function (data, status, headers, config) {
-                   // this callback will be called asynchronously
-                   // when the response is available
-                   $scope.ptis = data;
-                   $scope.reviews = [{ stars: 5, body: "this product is asshole", author: "mkmk"}];
-                   $scope.ptis3 = "data";
+                 $http.get('/demo2').
+                         success(function (data, status, headers, config) {
+                             // this callback will be called asynchronously
+                             // when the response is available
+                             $scope.ptis = data;
+                             $scope.reviews = [{ stars: 5, body: "this product is asshole", author: "mkmk"}];
+                             $scope.ptis3 = "data";
 
 
-               }).
-               error(function (data, status, headers, config) {
-                   // called asynchronously if an error occurs
-                   // or server returns response with an error status.
-               });
+                         }).
+                         error(function (data, status, headers, config) {
+                             // called asynchronously if an error occurs
+                             // or server returns response with an error status.
+                         });
              });
 
 
@@ -284,15 +327,15 @@ img{
                  $scope.ptis = [];
                  // Simple GET request example :
                  $http.get('/images').
-               success(function (data, status, headers, config) {
-                   // this callback will be called asynchronously
-                   // when the response is available
-                   $scope.imagesData = data;
-               }).
-               error(function (data, status, headers, config) {
-                   // called asynchronously if an error occurs
-                   // or server returns response with an error status.
-               });
+                         success(function (data, status, headers, config) {
+                             // this callback will be called asynchronously
+                             // when the response is available
+                             $scope.imagesData = data;
+                         }).
+                         error(function (data, status, headers, config) {
+                             // called asynchronously if an error occurs
+                             // or server returns response with an error status.
+                         });
              });
 
 
@@ -329,51 +372,51 @@ img{
                      alert('Rating selected - ' + rating);
                  };
              })
-                                     .directive('starRating',
-                                       function () {
-                                           return {
-                                               restrict: 'A',
-                                               template: '<ul class="rating">'
-                                                        + '    <li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)">'
-                                                        + '\u2605'
-                                                        + '</li>'
-                                                        + '</ul>',
-                                               scope: {
-                                                   ratingValue: '=',
-                                                   max: '=',
-                                                   onRatingSelected: '&'
-                                               },
-                                               link: function (scope, elem, attrs) {
-                                                   var updateStars = function () {
-                                                       scope.stars = [];
-                                                       for (var i = 0; i < scope.max; i++) {
-                                                           scope.stars.push({
-                                                               filled: i < scope.ratingValue
-                                                           });
-                                                       }
-                                                   };
+                                               .directive('starRating',
+                                                 function () {
+                                                     return {
+                                                         restrict: 'A',
+                                                         template: '<ul class="rating">'
+                                                                  + '    <li ng-repeat="star in stars" ng-class="star" ng-click="toggle($index)">'
+                                                                  + '\u2605'
+                                                                  + '</li>'
+                                                                  + '</ul>',
+                                                         scope: {
+                                                             ratingValue: '=',
+                                                             max: '=',
+                                                             onRatingSelected: '&'
+                                                         },
+                                                         link: function (scope, elem, attrs) {
+                                                             var updateStars = function () {
+                                                                 scope.stars = [];
+                                                                 for (var i = 0; i < scope.max; i++) {
+                                                                     scope.stars.push({
+                                                                         filled: i < scope.ratingValue
+                                                                     });
+                                                                 }
+                                                             };
 
-                                                   scope.toggle = function (index) {
-                                                       scope.ratingValue = index + 1;
-                                                       scope.onRatingSelected({
-                                                           rating: index + 1
-                                                       });
-                                                   };
+                                                             scope.toggle = function (index) {
+                                                                 scope.ratingValue = index + 1;
+                                                                 scope.onRatingSelected({
+                                                                     rating: index + 1
+                                                                 });
+                                                             };
 
-                                                   scope.$watch('ratingValue',
-                                                       function (oldVal, newVal) {
-                                                           if (newVal) {
-                                                               updateStars();
-                                                           }
-                                                       }
-                                                   );
-                                               }
-                                           };
-                                       }
-                                   );
+                                                             scope.$watch('ratingValue',
+                                                                 function (oldVal, newVal) {
+                                                                     if (newVal) {
+                                                                         updateStars();
+                                                                     }
+                                                                 }
+                                                             );
+                                                         }
+                                                     };
+                                                 }
+                                             );
              animateApp.controller('StoreController', function ()
              { this.products = gem; }
-                                                   );
+                                                             );
 
 
 
@@ -387,15 +430,15 @@ img{
                  review: '5 star',
                  canPurchase: true
              },
-                                                   {
-                                                       name: 'ToothPaste',
-                                                       price: 2.95,
-                                                       images: [{ full: 'images/image2.jpg', thumb: 'images/image2.jpg' }, { full: 'images/image3.jpg', thumb: 'images/image5.jpg'}],
-                                                       description: 'This product is fucking asshole',
-                                                       specification: 'Is tooth paste me namak nahi hai',
-                                                       review: '1 star',
-                                                       canPurchase: false
-                                                   }]
+                                                             {
+                                                                 name: 'ToothPaste',
+                                                                 price: 2.95,
+                                                                 images: [{ full: 'images/image2.jpg', thumb: 'images/image2.jpg' }, { full: 'images/image3.jpg', thumb: 'images/image5.jpg'}],
+                                                                 description: 'This product is fucking asshole',
+                                                                 specification: 'Is tooth paste me namak nahi hai',
+                                                                 review: '1 star',
+                                                                 canPurchase: false
+                                                             }]
 
 
 
@@ -416,22 +459,36 @@ img{
 
 
              animateApp.controller('CarouselDemoCtrl', function ($scope) {
-                $scope.myInterval = 3000;
-                $scope.slides = [
-                {
-                    image: 'image1.png'
-                },
-                {
-                    image: 'image3.jpg'
-                },
-                {
-                    image: 'image1.png'
-                },
-                {
-                    image: 'image5.jpg'
-                }
-              ];
-            });
+                 $scope.myInterval = 3000;
+                 $scope.slides1 = [
+                          { "Result": { "Id": 4, "merchant_id": 1, "Description": "This service is blalalalal", "Reviews": 5, "LastModifiedAt": "2015-04-18T07:52:07.000Z", "LastModifiedBy": null, "Name": "Banner Maker", "Category": "Webapplication Development", "Specification": "bla bla bla", "id": 4, "review_id": 4, "Image": [null] },
+                              "Images": [{ "image": "1429343524661Hydrangeas.jpg" }, { "image": "1429343524662Chrysanthemum.jpg"}]
+                          }];
+
+
+
+
+
+
+
+
+
+
+                 $scope.slides = [
+                          {
+                              image: 'image1.png'
+                          },
+                          {
+                              image: 'image3.jpg'
+                          },
+                          {
+                              image: 'image1.png'
+                          },
+                          {
+                              image: 'image5.jpg'
+                          }
+                        ];
+             });
 
 
 

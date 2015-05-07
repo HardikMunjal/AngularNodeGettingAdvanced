@@ -1,0 +1,70 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.css" rel="stylesheet"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.11/ng-grid.debug.js"></script>
+<script type="text/javascript">
+    (function() {
+  'use strict';
+
+  angular.module('myApp', ['ngGrid']);
+  
+  angular.module('myApp')
+    .controller('myCtrl', myCtrl);
+  
+  myCtrl.$inject = ['$scope', '$log'];
+
+  function myCtrl($scope, $log) {
+    var self = this;
+
+    self.myData = [
+      {name: "Moroni", age: 50},
+      {name: "Tiancum", age: 43},
+      {name: "Jacob", age: 27},
+      {name: "Nephi", age: 29},
+      {name: "Enos", age: 34}
+    ];
+   
+    self.selectedColumn = null;
+    self.selectedFieldName = null;
+    
+    $scope.$watch(function() { return self.selectedColumn; },
+      function(newValue, oldValue) {
+        $log.info(oldValue, newValue);
+        self.selectedFieldName = newValue.displayName;
+      }
+    );
+    
+    $scope.$watch(function() { return self.selectedFieldName; },
+      function(newValue, oldValue) {
+        self.selectedColumn.displayName = newValue;
+        self.gridOptions.ngGrid.buildColumns();
+      }
+    );
+
+    self.columnDefs =  [
+        {field: 'name', displayName: 'Name'},
+        {field:'age', displayName:'Age', cellTemplate: '<div ng-class="{red: row.getProperty(col.field) > 40}"><div class="ngCellText">{{row.getProperty(col.field)}}</div></div>'}
+      ];
+    
+    $scope["vm"] = self;
+    
+    self.gridOptions = { 
+      data: 'vm.myData',
+      columnDefs: self.columnDefs
+    };
+
+  }
+
+}());</script>
+
+<style type="text/css">.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    height: 300px
+}</style>
+<div ng-app="myApp" ng-controller="myCtrl as vm">
+  <select ng-options="column.field for column in vm.columnDefs" ng-model="vm.selectedColumn"></select>  
+  <input type="text" ng-model="vm.selectedFieldName">
+  
+  <div class="gridStyle" ng-grid="vm.gridOptions"></div>
+</div>
